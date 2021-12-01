@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "name": "C# Debugger",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/bin/Debug/net5.0/AdventOfCode.dll",
+      "args": ["--l", "cs"],
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "presentation": {
+        "hidden": false,
+        "group": "Debuggers",
+        "order": 1
+      }
+    }
+  ]
+}
