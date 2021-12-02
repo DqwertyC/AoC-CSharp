@@ -57,10 +57,29 @@ namespace AdventOfCode.Utils
       List<int> ints = new List<int>();
       foreach (string s in rawInput.Split(separator))
       {
-        ints.Add(int.Parse(s));
+        int temp;
+        if (int.TryParse(s, out temp))
+        {
+          ints.Add(temp);
+        }
       }
 
       return ints;
+    }
+
+    public List<long> GetLongs(string separator)
+    {
+      List<long> longs = new List<long>();
+      foreach (string s in rawInput.Split(separator))
+      {
+        long temp;
+        if (long.TryParse(s, out temp))
+        {
+          longs.Add(temp);
+        }
+      }
+
+      return longs;
     }
 
     public List<string> GetLines()

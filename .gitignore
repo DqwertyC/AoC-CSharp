@@ -3,3 +3,4 @@ obj
 tmp
 Inputs
 __pycache__
+config.json

@@ -1,8 +1,8 @@
-﻿using AdventOfCode.Utils;
+using AdventOfCode.Utils;
 
 namespace AdventOfCode.Solutions
 {
-  public class Solution_20YY_DD : CSharpSolution
+  public class Solution_2021_20 : CSharpSolution
   {
     public override void Solve(PuzzleInput input)
     {
