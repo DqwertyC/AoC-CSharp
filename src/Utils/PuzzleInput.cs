@@ -84,7 +84,9 @@ namespace AdventOfCode.Utils
 
     public List<string> GetLines()
     {
-      return new List<string>(rawInput.Split("\n"));
+      var lines = new List<string>(rawInput.Split("\n"));
+      lines.RemoveAt(lines.Count - 1);
+      return lines;
     }
 
     public List<List<string>> GetChunks()
@@ -94,6 +96,7 @@ namespace AdventOfCode.Utils
       foreach (string chunk in rawInput.Split("\n\n"))
       {
         List<string> chunkLines = new List<string>(chunk.Split("\n"));
+        chunkLines.RemoveAt(chunkLines.Count - 1);
         chunks.Add(chunkLines);
       }
 
