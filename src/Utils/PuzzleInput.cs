@@ -17,6 +17,11 @@ namespace AdventOfCode.Utils
       }
     }
 
+    public PuzzleInput(string raw)
+    {
+      rawInput = raw;
+    }
+
     public string GetRaw()
     {
       return rawInput;
@@ -55,7 +60,7 @@ namespace AdventOfCode.Utils
     public List<int> GetInts(string separator)
     {
       List<int> ints = new List<int>();
-      foreach (string s in rawInput.Split(separator))
+      foreach (string s in rawInput.Split(separator, StringSplitOptions.RemoveEmptyEntries))
       {
         int temp;
         if (int.TryParse(s, out temp))
@@ -70,7 +75,7 @@ namespace AdventOfCode.Utils
     public List<long> GetLongs(string separator)
     {
       List<long> longs = new List<long>();
-      foreach (string s in rawInput.Split(separator))
+      foreach (string s in rawInput.Split(separator, StringSplitOptions.RemoveEmptyEntries))
       {
         long temp;
         if (long.TryParse(s, out temp))
@@ -84,8 +89,7 @@ namespace AdventOfCode.Utils
 
     public List<string> GetLines()
     {
-      var lines = new List<string>(rawInput.Split("\n"));
-      lines.RemoveAt(lines.Count - 1);
+      var lines = new List<string>(rawInput.Split("\n", StringSplitOptions.RemoveEmptyEntries));
       return lines;
     }
 
@@ -93,10 +97,9 @@ namespace AdventOfCode.Utils
     {
       List<List<string>> chunks = new List<List<string>>();
 
-      foreach (string chunk in rawInput.Split("\n\n"))
+      foreach (string chunk in rawInput.Split("\n\n", StringSplitOptions.RemoveEmptyEntries))
       {
         List<string> chunkLines = new List<string>(chunk.Split("\n"));
-        chunkLines.RemoveAt(chunkLines.Count - 1);
         chunks.Add(chunkLines);
       }
 
