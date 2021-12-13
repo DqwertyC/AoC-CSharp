@@ -57,6 +57,26 @@ namespace AdventOfCode.Utils
       return dictionary;
     }
 
+    public Dictionary<(int, int), int> GetDictionaryInt()
+    {
+      Dictionary<(int, int), int> dictionary = new Dictionary<(int, int), int>();
+      int x;
+      int y = 0;
+
+      foreach (string line in GetLines())
+      {
+        x = 0;
+        foreach (char c in line)
+        {
+          dictionary[(x, y)] = c - '0';
+          x++;
+        }
+        y++;
+      }
+
+      return dictionary;
+    }
+
     public List<int> GetInts(string separator)
     {
       List<int> ints = new List<int>();
