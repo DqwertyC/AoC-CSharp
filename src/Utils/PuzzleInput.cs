@@ -119,7 +119,7 @@ namespace AdventOfCode.Utils
 
       foreach (string chunk in rawInput.Split("\n\n", StringSplitOptions.RemoveEmptyEntries))
       {
-        List<string> chunkLines = new List<string>(chunk.Split("\n"));
+        List<string> chunkLines = new List<string>(chunk.Split("\n", StringSplitOptions.RemoveEmptyEntries));
         chunks.Add(chunkLines);
       }
 

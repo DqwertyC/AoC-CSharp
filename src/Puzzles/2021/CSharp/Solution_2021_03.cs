@@ -92,7 +92,7 @@ namespace AdventOfCode.Solutions
 
       public TreeNode()
       {
-        int count = 0;
+        count = 0;
       }
 
       public TreeNode GetOnnChild()

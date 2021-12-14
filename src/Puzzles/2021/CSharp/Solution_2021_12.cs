@@ -77,41 +77,68 @@ start-RW";
         }
       }
 
-      int longPaths = 0;
-      int shortPaths = 0;
-      Queue<(List<CaveGraphNode>, bool)> currentPaths = new Queue<(List<CaveGraphNode>, bool)>();
-      List<CaveGraphNode> startPath = new List<CaveGraphNode>();
-      startPath.Add(nodes["start"]);
-      currentPaths.Enqueue((startPath, false));
+      currentSmallNodes = new HashSet<CaveGraphNode>();
+      currentPath = new Stack<CaveGraphNode>();
+      currentPath.Push(nodes["start"]);
+      currentDuplicate = null;
 
-      while (currentPaths.Count > 0)
-      {
-        (List<CaveGraphNode> currentPath, bool usedRevisit) = currentPaths.Dequeue();
+      shortPaths = 0;
+      longPaths = 0;
 
-        foreach (CaveGraphNode next in currentPath[currentPath.Count - 1].neighbors)
-        {
-          bool requiresRevisit = next.isSmallCave && currentPath.Contains(next);
-
-          if (!requiresRevisit || !usedRevisit)
-          {
-            List<CaveGraphNode> nextPath = new List<CaveGraphNode>(currentPath);
-            nextPath.Add(next);
-
-            if (next.isEnd)
-            {
-              longPaths++;
-              shortPaths += usedRevisit ? 0 : 1;
-            }
-            else
-            {
-              currentPaths.Enqueue((nextPath, usedRevisit || requiresRevisit));
-            }
-          }
-        }
-      }
+      RecurseCaves();
 
       SubmitPartOne(shortPaths);
       SubmitPartTwo(longPaths);
+    }
+
+    private Stack<CaveGraphNode> currentPath;
+    private HashSet<CaveGraphNode> currentSmallNodes;
+    private CaveGraphNode currentDuplicate = null;
+
+    private int shortPaths;
+    private int longPaths;
+
+    private void RecurseCaves()
+    {
+      foreach (CaveGraphNode next in currentPath.Peek().neighbors)
+      {
+        bool willRevisit = currentSmallNodes.Contains(next);
+        if (!next.isSmallCave || !currentSmallNodes.Contains(next) || currentDuplicate == null)
+        {
+          if (currentSmallNodes.Contains(next))
+          {
+            currentDuplicate = next;
+          }
+
+          if (next.isSmallCave)
+          {
+            currentSmallNodes.Add(next);
+          }
+
+          currentPath.Push(next);
+          RecurseCaves();
+        }
+      }
+
+      CaveGraphNode top = currentPath.Pop();
+
+      if (top.isEnd)
+      {
+        longPaths++;
+        shortPaths += currentDuplicate == null ? 1 : 0;
+      }
+
+      if (top.isSmallCave)
+      {
+        if (currentDuplicate == top)
+        {
+          currentDuplicate = null;
+        }
+        else
+        {
+          currentSmallNodes.Remove(top);
+        }
+      }
     }
 
     private bool CheckUsedRevisit(List<CaveGraphNode> path)
