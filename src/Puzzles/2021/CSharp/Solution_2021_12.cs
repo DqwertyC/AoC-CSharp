@@ -6,50 +6,9 @@ namespace AdventOfCode.Solutions
   public class Solution_2021_12 : CSharpSolution
   {
 
-    string testA = @"start-A
-start-b
-A-c
-A-b
-b-d
-A-end
-b-end";
-
-    string testB = @"dc-end
-HN-start
-start-kj
-dc-start
-dc-HN
-LN-dc
-HN-end
-kj-sa
-kj-HN
-kj-dc";
-
-    string testC = @"fs-end
-he-DX
-fs-he
-start-DX
-pj-DX
-end-zg
-zg-sl
-zg-pj
-pj-he
-RW-he
-fs-DX
-pj-RW
-zg-RW
-start-pj
-he-WI
-zg-he
-pj-fs
-start-RW";
 
     public override void Solve(PuzzleInput input)
     {
-      PuzzleInput testInputA = new PuzzleInput(testA);
-      PuzzleInput testInputB = new PuzzleInput(testB);
-      PuzzleInput testInputC = new PuzzleInput(testC);
-
       Dictionary<string, CaveGraphNode> nodes = new Dictionary<string, CaveGraphNode>();
 
       foreach (string line in input.GetLines())

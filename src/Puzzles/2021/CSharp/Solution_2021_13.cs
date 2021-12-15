@@ -43,8 +43,6 @@ fold along x=5";
         points.Add((int.Parse(coords[0]), int.Parse(coords[1])));
       }
 
-
-
       bool firstFold = true;
       (int x, int y) bottomRight = (0, 0);
       foreach (string line in chunks[1])
