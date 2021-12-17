@@ -24,7 +24,7 @@ namespace AdventOfCode.Utils
 
     public string GetRaw()
     {
-      return rawInput;
+      return rawInput.Trim('\n');
     }
 
     public override string ToString()
